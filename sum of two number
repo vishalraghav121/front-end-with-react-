@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <script>
+    // debounce function
+    // debouncing a function ensure that it doesn't call freqently so that server performance can be improved
+    let timeout;
+    function debounce1() {
+      clearTimeout(timeout);
+      timeout = setTimeout(function() {
+        add1();
+      }, 1000);
+    }
+       function add1()
+       {
+        let a= document.getElementById("one").value;
+        let b= document.getElementById("second").value;
+        fetch("https://sum-server.100xdevs.com/sum?a="+ a +"&b="+ b)
+        .then(function(resolve){
+           resolve.text()
+           .then(function(ans)
+          {
+            document.getElementById("but").innerHTML=ans;
+          })
+        })
+       }
+  </script>
+  <input oninput=debounce1() type="text" placeholder="first number" id="one"><br>
+  <input oninput=debounce1()  type="text" placeholder="second number" id="second"><br>
+ 
+  <div id="but"></div>
+</body>
+
+</html>
