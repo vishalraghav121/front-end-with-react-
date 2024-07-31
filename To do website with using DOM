@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do app</title>
+</head>
+<script>
+    let globalid=1;
+    function mark(todoid)
+    {
+        const parent=document.getElementById(todoid);
+        parent.children[2].innerHTML="Done!";
+    }
+    function childbnao(title,desc,id)
+    {
+        const child=document.createElement("div");
+        const firstchild=document.createElement("div");
+        firstchild.innerHTML=title;
+        const secondchild=document.createElement("div");
+        secondchild.innerHTML=desc;
+        const b=document.createElement("button");
+        b.innerHTML="mark as done";
+        b.setAttribute("onclick",`mark(${id})`);
+        child.appendChild(firstchild);
+        child.appendChild(secondchild);
+        child.appendChild(b);
+        child.setAttribute("id",id);
+        return child;
+    }
+    function add()
+    {
+        const a=document.getElementById("tit").value;
+        const b=document.getElementById("desc").value;
+         const parent =document.getElementById("finalans")
+         parent.appendChild(childbnao(a,b,globalid++));
+    }
+</script>
+<body>
+    <input type="text" placeholder="title" id="tit"><br><br>
+    <input type="text" placeholder="description" id="desc"><br><br>
+    <button onclick="add()">need to be complete</button>
+    <div id="finalans"></div>
+</body>
+</html>
